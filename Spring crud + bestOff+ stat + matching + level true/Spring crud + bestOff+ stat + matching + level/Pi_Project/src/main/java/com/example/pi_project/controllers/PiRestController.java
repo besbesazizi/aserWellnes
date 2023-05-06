@@ -129,8 +129,8 @@ public class PiRestController {
 
     }
     //----------------------------------------------------------------------------------------------
-    @GetMapping("/cosine-similarity")
-    public double cosineSimilarity(@RequestParam String offerDescription, @RequestParam String requestDescription) {
+    @GetMapping("/cosine-similarity/{offerDescription}/{requestDescription}")
+    public double cosineSimilarity(@PathVariable("offerDescription") String offerDescription, @PathVariable("requestDescription") String requestDescription) {
         return piService.cosineSimilarity(offerDescription, requestDescription);
     }
 
