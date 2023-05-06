@@ -56,7 +56,7 @@ public interface IPiService {
     public void archiveOffer(Offer offer) ;
     public List<Offer> bestOff();
     double cosineSimilarity(String offerDescription, String requestDescription);
-    public String statistics();
+    public double statistics();
     public List<Offer> findMatchingOffers(int requestId);
 
     public void likeOffer(int offerId);

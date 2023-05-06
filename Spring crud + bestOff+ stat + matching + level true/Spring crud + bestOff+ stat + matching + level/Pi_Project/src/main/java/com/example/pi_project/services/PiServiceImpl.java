@@ -59,7 +59,7 @@ public class PiServiceImpl implements IPiService , UserDetailsService {
 
     //-----------------------------------statistics--------------------------------------------------
     @Override
-    public String statistics() {
+    public double statistics() {
         List<Offer> offers = offerRepository.findAll();
         List<Request> requests = requestRepository.findAll();
 
@@ -76,7 +76,7 @@ public class PiServiceImpl implements IPiService , UserDetailsService {
         }
 
         double percentage = ((double) confirmedRequests / requests.size()) * 100;
-        return "Le pourcentage des demandes confirmées et dont le budget est Supérieur ou égal au prix de l'offre est de " + percentage + "%";
+        return percentage;
     }
 
     //---------------------------------------- Similarity -------------------------------------------------

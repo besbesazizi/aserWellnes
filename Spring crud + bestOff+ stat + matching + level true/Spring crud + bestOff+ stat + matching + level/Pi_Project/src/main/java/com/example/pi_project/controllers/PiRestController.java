@@ -26,6 +26,19 @@ public class PiRestController {
     public List<Offer> getAllOffers(){
         return  OfferRepository.findAll();
     }
+    @GetMapping("/AllOffersArchived")
+    @ResponseBody
+    public List<Offer> getAllOffersArchived(){
+        List<Offer> archived = new ArrayList<>();
+        List<Offer> offers = new ArrayList<>();
+        offers =  OfferRepository.findAll();
+        for (Offer offer :offers){
+            if(offer.isArchived()==true){
+                archived.add(offer);
+            }
+        }
+        return archived;
+    }
 
     @GetMapping("/AllOffersMsg")
     @ResponseBody
@@ -111,9 +124,9 @@ public class PiRestController {
     }
     //---------------------------------------------------------------------------------------------
     @GetMapping("/statistics")
-    public ResponseEntity<String> getStatistics() {
-        String result = piService.statistics();
-        return ResponseEntity.ok(result);
+    public double getStatistics() {
+        return piService.statistics();
+
     }
     //----------------------------------------------------------------------------------------------
     @GetMapping("/cosine-similarity")
@@ -134,12 +147,12 @@ public class PiRestController {
         }
     }
 
-    @PostMapping("/{offerId}/like")
+    @GetMapping("/{offerId}/like")
     public void likeOffer(@PathVariable int offerId) {
         piService.likeOffer(offerId);
     }
 
-    @PostMapping("/{offerId}/dislike")
+    @GetMapping("/{offerId}/dislike")
     public void dislikeOffer(@PathVariable int offerId) {
         piService.dislikeOffer(offerId);
     }
