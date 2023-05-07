@@ -111,13 +111,13 @@ public class PiRestController {
         if (offers.size() == 3) {
             StringBuilder message = new StringBuilder();
             message.append("Remise de 20% sur l'offre ").append(offers.get(0).getId());
-            offers.get(0).setDescription(message.toString());
+            offers.get(0).setDiscount_details(message.toString());
             message.setLength(0);
             message.append("Remise de 15% sur l'offre ").append(offers.get(1).getId());
-            offers.get(1).setDescription(message.toString());
+            offers.get(1).setDiscount_details(message.toString());
             message.setLength(0);
             message.append("Remise de 10% sur l'offre ").append(offers.get(2).getId());
-            offers.get(2).setDescription(message.toString());
+            offers.get(2).setDiscount_details(message.toString());
             OfferRepository.saveAll(offers);
         }
         return ResponseEntity.ok(offers);
@@ -137,7 +137,7 @@ public class PiRestController {
     //---------------------------------------------------------------------------------------------------
 
 
-    @GetMapping("/requests/{id}/matching-offers")
+    @GetMapping("/requests/matching-offers/{id}")
     public ResponseEntity<List<Offer>> getMatchingOffers(@PathVariable("id") int requestId) {
         List<Offer> matchingOffers = piService.findMatchingOffers(requestId);
         if (matchingOffers.isEmpty()) {

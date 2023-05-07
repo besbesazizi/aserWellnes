@@ -136,7 +136,7 @@ public class PiServiceImpl implements IPiService , UserDetailsService {
         List<Offer> offers = offerRepository.findByArchived(false);
         List<Offer> matchingOffers = new ArrayList<>();
         for (Offer offer : offers) {
-            if (!offer.isArchived() && offer.getExpiration_date().compareTo(new Date()) > 0
+            if (!offer.isArchived()
                     && offer.getOrderPrice() <= request.getBudget()) {
                 double similarity = cosineSimilarity(offer.getDescription(), request.getDescription());
                 if (similarity >= 0.6) {

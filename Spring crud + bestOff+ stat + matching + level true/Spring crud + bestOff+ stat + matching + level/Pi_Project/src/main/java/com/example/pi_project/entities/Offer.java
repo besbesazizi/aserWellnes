@@ -24,6 +24,7 @@ public class Offer implements Serializable {
     private int id;
     private Long numOffer;
     private String description;
+    private String discount_details;
     private String name;
     private Long nbr_offer;
     private float OrderPrice;
